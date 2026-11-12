@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio của Mai Văn Đồng - Sinh viên Mạng máy tính và truyền thông dữ liệu">
+  <title>Mai Văn Đồng | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-2: #334155;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #22d3ee;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--surface-2);
+      z-index: 10;
+    }
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+    .logo { font-weight: 700; color: var(--accent); }
+    nav ul { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
+    nav a { color: var(--text); font-size: 0.95rem; }
+    nav a:hover { color: var(--accent); text-decoration: none; }
+
+    /* Hero */
+    .hero {
+      padding: 90px 0 70px;
+      text-align: center;
+      background: radial-gradient(circle at top, #1e3a5f 0%, var(--bg) 60%);
+    }
+    .hero .greeting { color: var(--accent-2); font-weight: 600; margin-bottom: 8px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 12px; }
+    .hero .subtitle { color: var(--muted); font-size: 1.1rem; max-width: 640px; margin: 0 auto 28px; }
+    .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      margin: 6px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .btn.primary { background: var(--accent); color: var(--bg); }
+    .btn:hover { text-decoration: none; opacity: 0.85; }
+
+    /* Sections */
+    section { padding: 70px 0; }
+    section:nth-of-type(even) { background: var(--surface); }
+    h2 {
+      font-size: 1.9rem;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    /* Info */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--surface-2);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+    section:nth-of-type(even) .card { background: var(--bg); }
+    .card .label { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .card .value { font-size: 1.1rem; font-weight: 600; margin-top: 4px; }
+
+    /* Interests */
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .tag {
+      background: var(--surface-2);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+    .interest-card h3 { color: var(--accent); margin-bottom: 8px; }
+    .interest-card p { color: var(--muted); }
+
+    .interest-highlight {
+      border-left: 4px solid var(--accent-2);
+    }
+
+    /* Achievements */
+    .timeline { display: grid; gap: 18px; }
+    .achv {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      background: var(--surface);
+      border: 1px solid var(--surface-2);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    section:nth-of-type(even) .achv { background: var(--bg); }
+    .achv .year { color: var(--accent-2); font-weight: 700; }
+    .achv h3 { font-size: 1.05rem; margin-bottom: 4px; }
+    .achv p { color: var(--muted); font-size: 0.95rem; }
+    .placeholder { border: 2px dashed var(--surface-2); background: transparent !important; }
+    .placeholder .year, .placeholder h3, .placeholder p { color: var(--muted); font-style: italic; }
+
+    /* Contact */
+    .contact-list { list-style: none; display: grid; gap: 12px; }
+    .contact-list li {
+      background: var(--surface);
+      border: 1px solid var(--surface-2);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+    }
+    .contact-list span { color: var(--muted); margin-right: 10px; }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--surface-2);
+    }
+
+    @media (max-width: 600px) {
+      nav ul { gap: 12px; }
+      nav a { font-size: 0.85rem; }
+      .achv { grid-template-columns: 1fr; gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <div class="logo">MVĐ</div>
+      <ul>
+        <li><a href="#gioi-thieu">Giới thiệu</a></li>
+        <li><a href="#hoc-van">Học vấn</a></li>
+        <li><a href="#so-thich">Sở thích</a></li>
+        <li><a href="#thanh-tich">Thành tựu</a></li>
+        <li><a href="#lien-he">Liên hệ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <p class="greeting">Xin chào, tôi là</p>
+      <h1>Mai Văn Đồng</h1>
+      <p class="subtitle">
+        Sinh viên ngành Mạng máy tính và truyền thông dữ liệu, đam mê an toàn thông tin
+        và ứng dụng trí tuệ nhân tạo vào thực tiễn.
+      </p>
+      <a class="btn primary" href="#lien-he">Liên hệ với tôi</a>
+      <a class="btn" href="#thanh-tich">Xem thành tựu</a>
+    </div>
+  </header>
+
+  <section id="gioi-thieu">
+    <div class="container">
+      <h2>Giới thiệu</h2>
+      <div class="info-grid">
+        <div class="card">
+          <div class="label">Họ và tên</div>
+          <div class="value">Mai Văn Đồng</div>
+        </div>
+        <div class="card">
+          <div class="label">Ngành học</div>
+          <div class="value">Mạng máy tính và truyền thông dữ liệu</div>
+        </div>
+        <div class="card">
+          <div class="label">Lớp</div>
+          <div class="value">CN15</div>
+        </div>
+        <div class="card">
+          <div class="label">Mã số sinh viên</div>
+          <div class="value">25023464</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hoc-van">
+    <div class="container">
+      <h2>Học vấn</h2>
+      <div class="timeline">
+        <div class="achv">
+          <div class="year">Hiện tại</div>
+          <div>
+            <h3>Sinh viên ngành Mạng máy tính và truyền thông dữ liệu (CN15)</h3>
+            <p>Tập trung vào hạ tầng mạng, truyền thông dữ liệu và các kiến thức nền tảng về bảo mật.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="so-thich">
+    <div class="container">
+      <h2>Sở thích &amp; Đam mê</h2>
+      <p style="color: var(--muted); margin-bottom: 24px;">
+        Khám phá sự giao thoa giữa công nghệ số, tư duy dữ liệu và các giải pháp ứng dụng
+        Trí tuệ nhân tạo vào thực tiễn cuộc sống.
+      </p>
+      <div class="info-grid">
+        <div class="card interest-card interest-highlight">
+          <h3>🔐 An toàn thông tin</h3>
+          <p>Tìm hiểu về bảo mật mạng, phân tích lỗ hổng và cách bảo vệ hệ thống, dữ liệu trước các mối đe dọa trên không gian mạng.</p>
+        </div>
+        <div class="card interest-card">
+          <h3>🤖 Trí tuệ nhân tạo</h3>
+          <p>Khám phá cách AI được ứng dụng để giải quyết các bài toán thực tế trong đời sống và công việc.</p>
+        </div>
+        <div class="card interest-card">
+          <h3>📊 Tư duy dữ liệu</h3>
+          <p>Thu thập, phân tích và trực quan hóa dữ liệu để đưa ra quyết định dựa trên bằng chứng.</p>
+        </div>
+        <div class="card interest-card">
+          <h3>🌐 Mạng &amp; truyền thông</h3>
+          <p>Nghiên cứu về kiến trúc mạng, giao thức truyền thông và hạ tầng kết nối hiện đại.</p>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Cybersecurity</span>
+        <span class="tag">Network</span>
+        <span class="tag">Data Analysis</span>
+        <span class="tag">Artificial Intelligence</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="thanh-tich">
+    <div class="container">
+      <h2>Thành tựu</h2>
+      <!--
+        HƯỚNG DẪN: Thay nội dung trong các thẻ "placeholder" bằng thành tựu thật của bạn.
+        Sao chép một khối <div class="achv"> để thêm thành tựu mới.
+        Xóa class "placeholder" khi đã điền xong.
+      -->
+      <div class="timeline">
+        <div class="achv placeholder">
+          <div class="year">Năm ...</div>
+          <div>
+            <h3>Tên thành tựu / giải thưởng</h3>
+            <p>Mô tả ngắn gọn: cuộc thi, chứng chỉ, dự án, hoặc thành tích học tập.</p>
+          </div>
+        </div>
+        <div class="achv placeholder">
+          <div class="year">Năm ...</div>
+          <div>
+            <h3>Chứng chỉ / khóa học</h3>
+            <p>Ví dụ: chứng chỉ an toàn thông tin, chứng chỉ mạng, khóa học trực tuyến.</p>
+          </div>
+        </div>
+        <div class="achv placeholder">
+          <div class="year">Năm ...</div>
+          <div>
+            <h3>Dự án cá nhân</h3>
+            <p>Ví dụ: một công cụ quét mạng, một bài phân tích dữ liệu, hoặc một ứng dụng AI nhỏ.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lien-he">
+    <div class="container">
+      <h2>Liên hệ</h2>
+      <ul class="contact-list">
+        <li><span>Email:</span><a href="mailto:ban-email@example.com">ban-email@example.com</a></li>
+        <li><span>GitHub:</span><a href="https://github.com/TEN-GITHUB-CUA-BAN" target="_blank" rel="noopener">github.com/TEN-GITHUB-CUA-BAN</a></li>
+        <li><span>LinkedIn:</span><a href="https://www.linkedin.com/in/TEN-CUA-BAN" target="_blank" rel="noopener">linkedin.com/in/TEN-CUA-BAN</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Mai Văn Đồng. Xây dựng bằng HTML &amp; CSS, lưu trữ trên GitHub Pages.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
